@@ -1,0 +1,862 @@
+//ActionDemobutton.java
+import java.awt.*;//all awt packages
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;//all swing packages
+
+public class ActionDemoButton 
+{
+	JButton button;
+	public static void main(String args[])
+	{
+		ActionDemoButton adb = new ActionDemoButton();//object of a main class
+	}
+	public ActionDemoButton()
+	{
+		JFrame frm = new JFrame("Action listener on button component");//creating new JFrame
+		button = new JButton("Press Here");
+		button.addActionListener(new MyAction());//adding action on button
+		frm.add(button);
+		frm.setSize(300, 400);
+		frm.setVisible(true);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public class MyAction implements ActionListener//implementing MyAction
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			String text = (String)e.getActionCommand();
+			if(text.equals("Press Here"))
+			{
+				button.setText("U learned Action Listener");
+				
+			}
+			else
+			{
+				button.setText("Press Here");
+			}
+		}
+	}
+
+}
+//ButtonMultiple.java
+import java.awt.*;
+import java.awt.event.*;
+import java.util.EventObject;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowEvent;
+class ButtonMulltiple extends Frame implements ActionListener
+{
+	
+	String title;
+
+    Button b1;
+    Button b2;
+    Button b3;
+	TextField t1;
+	
+    public ButtonMulltiple(String title)//counsrtuctor pass
+    {
+    	 super(title);
+    	 setLayout(new FlowLayout());
+    	 t1 = new TextField(20);
+  
+    	 b1 = new Button("Button b1");
+    	 b2 = new Button("Button b2");
+    	 b3 = new Button("Button b3");
+    	 
+    	add(t1);
+    	add(b1);
+    	add(b2);
+    	add(b3);
+    	
+    	b1.addActionListener(this);
+    	b2.addActionListener(this);
+    	b3.addActionListener(this);
+    	
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+    	String msg = " ";
+    	if(e.getSource()==b1)
+    	{
+    		t1.setText(msg+ "You clicked button 1");
+    	}
+    	if(e.getSource()==b2)
+    	{
+    		t1.setText(msg+ "You clicked button 2");
+    	}
+    	if(e.getSource()==b3)
+    	{
+    		t1.setText(msg+ "You clicked button 3");
+    	}
+    	addWindowListener(new WindowAdapter()
+    			{
+    				public void windowClosing(WindowEvent e)
+    				{
+    					dispose();
+    				}
+    			});
+    	}
+    public static void main(String args[])
+    {
+    	ButtonMulltiple frm = new ButtonMulltiple("My Frame");
+    	Toolkit kit = Toolkit.getDefaultToolkit();
+    	Dimension dim = kit.getScreenSize();
+    	int width = dim.width;
+    	int height = dim.height;
+    	frm.setSize(width/2,height/2);
+    	frm.setLocation(width/4,height/4);
+    	frm.setBackground(Color.darkGray);
+    	frm.setVisible(true);
+    }
+		
+	
+		
+	}
+
+
+//CheckBoxDemo.java
+
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowEvent;
+
+public class CheckBoxDemo extends Frame implements ItemListener 
+{
+	String title;
+	Checkbox c1,c2;
+	TextField t1;
+	
+	public CheckBoxDemo(String title)//passing constructor
+	{
+		super(title);
+		setLayout(new FlowLayout());
+		t1 = new TextField(40);
+		c1 = new Checkbox("Male");
+		c2 = new Checkbox("Female");
+		
+		add(t1);
+		add(c1);
+		add(c2);
+		
+		c1.addItemListener(this);
+		c2.addItemListener(this);
+	}
+	public void itemStateChanged(ItemEvent e)
+	{
+		String msg = " ";
+		if(e.getSource() == c1)
+		{
+			t1.setText(msg+ "You are Male");
+		}
+		if(e.getSource() == c2)
+		{
+			t1.setText(msg+ "You are Female");
+		}
+		addWindowListener(new WindowAdapter()
+				{
+					public void windowClosing(WindowEvent e)
+					{
+						dispose();
+					}
+				});
+	}
+	public static void main(String args[])
+	{
+		CheckBoxDemo frm = new CheckBoxDemo("My Frame");//creating object of main class
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension dim = kit.getScreenSize();
+		int width = dim.width;
+		int height = dim.height;
+		frm.setSize(1000,1000);
+		frm.setLocation(width/8,height/8);
+		frm.setBackground(Color.white);
+		frm.setVisible(true);
+	}
+}
+
+//ChoiceDemo.java
+import java.awt.*;
+import java.awt.event.*;
+public class ChoiceDemo1 extends Frame implements ItemListener
+{
+	Choice course;
+	public ChoiceDemo1(String title)
+	{
+		super(title);
+		course = new Choice();
+		
+		course.add("BBA");
+		course.add("BCA");
+		course.add("BCS");
+		course.add("BCOM");
+		course.add("BTech");
+		
+		add(course);
+		course.addItemListener(this);
+	
+	}
+	
+	public void itemStateChanged(ItemEvent e) 
+	{
+		
+	
+	addWindowListener(new WindowAdapter()
+	{
+		public void windowClosing(WindowEvent e)
+		{
+			dispose();
+		}
+	});
+
+}
+public static void main(String args[])
+{
+	ChoiceDemo1 frm = new ChoiceDemo1("My Frame");
+	Toolkit kit = Toolkit.getDefaultToolkit();
+	Dimension dim = kit.getScreenSize();
+	int width = dim.width;
+	int height = dim.height;
+	frm.setSize(500, 200);
+	frm.setLocation(width/4, height/4);
+	frm.setBackground(Color.DARK_GRAY);
+	frm.setVisible(true);
+
+}
+}
+
+//ColourChoose.java
+import java.awt.font.*;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.JColorChooser;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
+public class Colorchooser 
+{
+	public static void main(String args[])
+	{
+		final JColorChooser color = new JColorChooser();
+		final JLabel previewLabel = new JLabel("Color Chooser Apperance By Shree",JLabel.CENTER);
+		
+		previewLabel.setFont(new Font("Wide Latin",Font.BOLD|Font.ITALIC,40));
+		
+		previewLabel.setSize(previewLabel.getPreferredSize());
+previewLabel.setBorder(BorderFactory.createEmptyBorder(0,0,1,0));
+		
+		color.setPreviewPanel(previewLabel);
+		
+		ActionListener okActionListener = new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("Yes Press OK");
+				System.out.println(color.getColor());
+			}
+		};
+		
+		ActionListener cancelActionListener = new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						System.out.println("You press Cancel");
+					}
+				};
+		
+				final JDialog dialog = JColorChooser.createDialog(null, "Change Button Background", true, color, okActionListener, cancelActionListener);
+				dialog.setVisible(true);
+	}
+	
+
+}
+//FileChooser.java
+import java.io.*;
+import javax.swing.*;
+
+public class Filechooser 
+{
+	public static void main(String args[])throws Exception
+	{
+		JFileChooser chooser = new JFileChooser();//creating object of filechooser
+		int rtnvalue = chooser.showOpenDialog(null);
+		if(rtnvalue==JFileChooser.APPROVE_OPTION)
+		{
+			File file = chooser.getSelectedFile();
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String str = " ";
+			while((str = br.readLine())!=null)
+			{
+				System.out.println(str);
+			}
+		}
+	}
+
+}
+//FormStudentRegistration.java
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+public class FormStudentRegistrationAWT extends Frame implements ActionListener
+{
+	String msg = " ";
+	Button b1 = new Button("Submit");
+	Label l1 = new Label("Student Details",Label.CENTER);
+	Label l2 = new Label("Name" , Label.LEFT);
+	Label l3 = new Label("Age" , Label.LEFT);
+	Label l4 = new Label("Gender (M/F)",Label.LEFT);
+	Label l5 = new Label("Address" , Label.LEFT);
+	Label l6 = new Label("Course" , Label.LEFT);
+	Label l7 = new Label("Semister" , Label.LEFT);
+	Label l8 = new Label("", Label.RIGHT);
+	
+	TextField t1 = new TextField();
+
+	Choice c1 = new Choice();
+	CheckboxGroup cbg = new CheckboxGroup();
+	Checkbox ck1 = new Checkbox("Male",false,cbg);
+	Checkbox ck2 = new Checkbox("Female",false,cbg);
+	
+	TextArea t2 = new TextArea("",180,90,TextArea.SCROLLBARS_VERTICAL_ONLY);
+	
+	
+	
+	Choice course = new Choice();
+	Choice sem = new Choice();
+	Choice age = new Choice();
+	
+	public FormStudentRegistrationAWT()
+	{
+		addWindowListener(new myWindowAdapter());
+		setBackground(Color.DARK_GRAY);
+		setForeground(Color.CYAN);
+		setLayout(null);
+		t2.setBackground(Color.BLACK);
+		t2.setForeground(Color.ORANGE);
+		t1.setBackground(Color.BLACK);
+		t1.setForeground(Color.ORANGE);
+		age.setBackground(Color.BLACK);
+		age.setForeground(Color.ORANGE);
+		course.setBackground(Color.BLACK);
+		course.setForeground(Color.ORANGE);
+		sem.setBackground(Color.BLACK);
+		sem.setForeground(Color.ORANGE);
+		
+		add(l1);
+		add(l2);
+		add(l3);
+		add(l4);
+		add(l5);
+		add(l6);
+		add(l7);
+		add(l8);
+		
+		add(t1);
+		add(t2);
+		
+		add(ck1);
+		add(ck2);
+		
+		add(course);
+		add(sem);
+		add(age);
+		
+		b1.addActionListener(this);
+		add(b1);
+		
+		course.add("BCS");
+		course.add("BCOM");
+		course.add("BBA");
+		course.add("BBA");
+		course.add("BCA");
+		
+		sem.add("1");
+		sem.add("2");
+		sem.add("3");
+		sem.add("4");
+		sem.add("5");
+		
+		age.add("18");
+		age.add("19");
+		age.add("20");
+		age.add("21");
+		age.add("22");
+		
+		l1.setBounds(10, 40, 280,20);
+		l2.setBounds(25, 65, 90, 20);
+		l3.setBounds(25,90,90,20);
+		l4.setBounds(25, 120, 90, 20);
+		l5.setBounds(25, 185, 90, 20);
+		l6.setBounds(25, 260, 90, 20);
+		l7.setBounds(25, 290, 90, 20);
+		l8.setBounds(25, 260, 90, 20);
+		
+		t1.setBounds(120, 65, 170, 20);
+		t2.setBounds(120, 185, 170, 60);
+		
+		ck1.setBounds(120, 120, 50, 20);
+		ck2.setBounds(170,120,60,20);
+		
+		course.setBounds(120, 260, 100, 20);
+		sem.setBounds(120, 290, 50, 20);
+		age.setBounds(120, 90, 50, 20);
+		
+		b1.setBounds(120, 350, 50, 30);
+		
+	}
+	public void paint(Graphics g)
+	{
+		g.drawString(msg, 200, 450);
+	}	
+		public void actionPerformed(ActionEvent e)
+		{
+			if(e.getActionCommand().equals("save"));
+			{
+				msg = "Student Details saved!";
+				setForeground(Color.GREEN);
+		    }
+		}
+		
+		public static void main(String args[])
+		{
+			FormStudentRegistrationAWT fs = new FormStudentRegistrationAWT();
+			fs.setSize(400, 500);
+			fs.setTitle("Student Registration");
+			fs.setVisible(true);
+		}
+		}
+class myWindowAdapter extends WindowAdapter
+{
+	public void windowClosing(WindowEvent e)
+	{	
+		System.exit(0);
+	}
+}
+
+
+//SWING COMPONANTS
+
+//Jcheckbox.java
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+public class JCheckbox 
+{
+	public static void main(String args[])
+	{
+		JFrame frm = new JFrame("Checkbox");
+		JCheckBox chk = new JCheckBox("Click on box");
+		frm.add(chk);
+		frm.setSize(130,140);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setVisible(true);
+	}
+
+}
+
+//Jlist.java
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+
+public class JListt 
+{
+	public static void main(String args[])
+	{
+		String subject[] = {"Maths","Chemistry","Java","C++","Python"};
+		JFrame frm = new JFrame("JList Demo");
+		JPanel panel = new JPanel();
+		JList list = new JList(subject);
+		frm.setUndecorated(true);
+		frm.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+		panel.add(list);
+		frm.add(panel);
+		frm.setSize(400,300);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setVisible(true);
+		
+	}
+}
+
+//JradioButton.java
+import javax.swing.*;
+import java.awt.*;
+public class JRadiobutton 
+{
+	public static void main(String args[])
+	{
+		JRadioButton M,F;
+		JFrame frm = new JFrame("JRadioButton");
+		JPanel panel = new JPanel();
+		ButtonGroup buttonGroup = new ButtonGroup();
+		
+		M = new JRadioButton("Male");
+		buttonGroup.add(M);
+		panel.add(M);
+		
+		F = new JRadioButton("Female");
+		buttonGroup.add(F);
+		panel.add(F);
+		
+		M.setSelected(true);// first preference to MALE
+		
+		frm.add(panel);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setSize(400, 500);
+		frm.setVisible(true);
+		
+		
+	}
+
+}
+
+//JScrollPane.java
+import java.awt.Color;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class JScrollPanee 
+{
+	public static void main(String args[])
+	{
+		String str = "Chikni Chameli"
+					 +"Jalebi Bai\n"
+					 +"Munni Badnam\n"
+					 +"Fevicol\n"
+				 +"Pritam Pyare\n"
+					 +"Rikshawala\n"
+					 +"Chaltay ki\n";
+		JFrame frm = new JFrame("ScrollPane");
+		JPanel panel = new JPanel();
+		int vsb = 5, hsb = 5;
+		JTextArea area = new JTextArea(str,hsb,vsb);
+		JScrollPane pane = new JScrollPane(area);
+		panel.add(pane);
+		frm.add(panel);
+		frm.setSize(400, 500);
+		frm.setBackground(Color.BLACK);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setVisible(true);
+	}
+
+}
+JTable.java
+import java.awt.Color;
+import java.awt.color.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
+public class Jtable 
+{
+	public static void main(String args[])
+	{
+		JTable table;
+		JFrame frm = new JFrame("Employee Details of INFOSYS");
+		JPanel panel = new JPanel();
+		String edetails [][] = {{"A1","Akshay Pawar","Coder","10000"},
+								{"A2","Shrawani Pawar","Tester","2000"},
+								{"A3","Shubham Dayma","Peun","1000"},
+								{"A4","Shrikar Datar","CEO","90000"},
+										{"","","",""}};
+		String Header[] ={"EMPID","NAME","DESIGNATION","SALARY"};
+		
+		DefaultTableModel model = new DefaultTableModel(edetails,Header);
+		table = new JTable(model);
+		/*{
+					public void isCellEditable(int rowIndex , int colIndex)
+			{
+						return true;
+			}
+								
+		}*/
+		JTableHeader header = table.getTableHeader();
+		header.setBackground(Color.ORANGE);
+		JScrollPane sp = new JScrollPane(table);
+		panel.add(sp);
+		
+		frm.add(panel);
+		frm.setSize(1200,1200);
+		frm.setUndecorated(true);
+		frm.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setVisible(true);
+		
+		
+ 		}
+		
+}
+//JtextFieldCombo.java
+
+import java.awt.Color;
+import java.awt.color.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+
+public class JTextFieldComboBox 
+{
+	public static void main(String args[])
+	{
+		final JComboBox combo;
+		final JTextField txt;
+		String items[] = {"Veg Kolhapuri","Paneer Patiala","Khurma","BhendiMasala","Dalfry"};
+		JFrame frm = new JFrame("JCombo");
+		JPanel panel = new JPanel();
+		combo = new JComboBox(items);
+		combo.setBackground(Color.LIGHT_GRAY);
+		combo.setForeground(Color.RED);
+		txt = new JTextField(15);
+		panel.add(combo);
+		panel.add(txt);
+		frm.add(panel);
+		 combo.addItemListener(new ItemListener()
+				{
+					public void itemStateChanged(ItemEvent e)
+					{
+						String str = (String)combo.getSelectedItem();
+						txt.setText(str);
+					}
+				});
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setSize(300,350);
+		frm.setVisible(true);
+	}
+}
+
+//JToolBar.java
+import javax.swing.*;
+import java.awt.*;
+
+public class JToolbar 
+{
+	public static void main(String[] args)
+	{
+		JFrame frm = new JFrame("JToolbar Demo");
+		JToolBar toolbar = new JToolBar("Toolbar",JToolBar.HORIZONTAL);
+		
+		JButton homebtn = new JButton(new ImageIcon("Home.png"));
+		toolbar.add(homebtn);
+		
+		JButton backbtn = new JButton(new ImageIcon("back1.jpg"));
+		toolbar.add(backbtn);
+		
+		JButton forwardbtn = new JButton(new ImageIcon("forward.jpg"));
+		toolbar.add(forwardbtn);
+		
+		frm.getContentPane().add(toolbar,BorderLayout.NORTH);
+		frm.setUndecorated(true);
+		frm.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frm.setSize(400, 500);
+		frm.setVisible(true);
+	}
+
+}
+//ProgressBar.java
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+
+import javax.swing.*;
+
+public class ProgressBar 
+{
+	final static int interval = 1000;
+	int i;
+	JLabel l1;
+	JProgressBar pb;
+	Timer timer;
+	JButton b1;
+	
+	public ProgressBar()
+	{
+		JFrame frm = new JFrame("Progress Bar Demo");
+		b1 = new JButton("DOWNLOAD");
+		b1.addActionListener(new ButtonListener());
+		
+		pb = new JProgressBar(0,20);
+		pb.setValue(0);
+		pb.setStringPainted(true);
+		
+		l1 = new JLabel("Hello Im Shree");
+		
+		JPanel panel = new JPanel();
+		panel.add(b1);
+		panel.add(pb);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		panel1.add(panel , BorderLayout.NORTH);
+		panel1.add(l1 , BorderLayout.CENTER);
+		panel1.setBorder(BorderFactory.createEmptyBorder(25, 25, 25,25));
+		frm.setContentPane(panel1);
+		frm.pack();
+		frm.setVisible(true);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		
+		//create a timer
+		
+		timer = new Timer(interval ,new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if(i==20)
+						{
+							Toolkit.getDefaultToolkit().beep();
+							timer.stop();
+							b1.setEnabled(true);
+							pb.setValue(0);
+							String str = "<html>" + "<font color =\"red\">"+"<b>"+"Dwonloading Completed." +"</b>" +"</font>" +"</html>";
+							l1.setText(str);
+						}
+						i = i+1;
+						pb.setValue(i);
+					}
+				});
+	}
+	
+	class ButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e) 
+		{
+			b1.setEnabled(false);
+			i=0;
+			String str = "<html>" + "<font color= \"red\">" + "<b>" + "Downloading File"  + "</b>" +  "</font>" + "</html>";
+			l1.setText(str);
+			timer.start();
+		
+			
+		}
+
+	}
+	public static void main(String args[])
+	{
+		ProgressBar pbb = new ProgressBar();
+	}
+}
+
+
+//GCDCalci.java
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JTextField;
+
+
+public class SPGCDcalci 
+{
+	public static void main(String args[])
+	{
+		JFrame frm = new JFrame("GCD CALCULATOR");
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		final JTextField t1 = new JTextField();
+		final JTextField t2 = new JTextField();
+		final JTextField t3 = new JTextField();
+		
+		//JScrollBar scrollbar1 = new JScrollBar();
+		//JScrollBar scrollbar2 = new JScrollBar();
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(3,4));
+		
+		BoundedRangeModel brm1 = t1.getHorizontalVisibility();
+		BoundedRangeModel brm2 = t2.getHorizontalVisibility();
+		
+		//scrollbar1.setModel(brm1);
+		//scrollbar2.setModel(brm2);
+		
+		panel.add(t1);
+		//panel.add(scrollbar1);
+		panel.add(t2);
+		//panel.add(scrollbar2);
+		panel.add(t3);
+		
+		final SPGCDcalci ts = new SPGCDcalci();
+		
+		t2.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						int c= 0;
+						System.out.println("First number" +t1.getText());
+						System.out.println("Second number" +t2.getText());
+						
+						int a = Integer.parseInt(t1.getText());
+						int b = Integer.parseInt(t2.getText());
+						
+						if(b!=0)
+						{
+							while(a%b!=0)
+							{
+								c=a%b;
+								a=b;
+								b=c;
+							}
+						}
+						else
+							c=0;
+						t3.setText(new Integer(c).toString());
+						
+					}
+				});
+		frm.add(panel);
+		frm.setSize(300,400);
+		frm.setVisible(true);
+		
+		}
+	
+
+}
+//UserNamePassword.java
+import javax.swing.*;
+public class UserNamePassWord  
+{
+	public static void main(String args[])
+	{
+		JFrame f = new JFrame("UserName & Password");
+		JPanel p = new JPanel();
+		JLabel l1 = new JLabel("UserName");
+		JLabel l2 = new JLabel("PassWord");
+		JTextField j1 = new JTextField(20);
+		JPasswordField j2 = new JPasswordField(20);
+		p.add(l1);
+		p.add(j1);
+		p.add(l2);
+		p.add(j2);
+		f.add(p);
+		f.setSize(1350,1250);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		
+	}
+
+}
+
