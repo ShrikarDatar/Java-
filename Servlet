@@ -1,0 +1,73 @@
+//Age.java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+
+
+public class age extends HttpServlet
+{
+	
+	public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
+	{
+		res.setContentType("text/html");
+		try
+		{
+			PrintWriter out=res.getWriter();
+			int age=Integer.parseInt(req.getParameter("ag"));
+				if(age>=18)
+					out.println("You are eligible for voting");
+				else
+					out.println("You are not eligible for voting");
+								
+		}catch(Exception e){}
+	}
+}
+
+//Book.java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+
+
+public class age extends HttpServlet
+{
+	
+	public void doGet(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
+	{
+		res.setContentType("text/html");
+		try
+		{
+			PrintWriter out=res.getWriter();
+			int age=Integer.parseInt(req.getParameter("ag"));
+				if(age>=18)
+					out.println("You are eligible for voting");
+				else
+					out.println("You are not eligible for voting");
+								
+		}catch(Exception e){}
+	}
+}
+
+//HitCount.java
+import java.io.*;
+import java.sql.Date;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+public class slip1 extends HttpServlet
+{
+  private int hitCount; 
+  public void init() 
+  { 
+     hitCount = 0;
+  } 
+  public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{
+    		response.setContentType("text/html");
+			hitCount++; 
+  	    	PrintWriter out = response.getWriter();
+      		out.println("Total Number of Visitor of Page is  :-"+ hitCount);
+	}
+}
